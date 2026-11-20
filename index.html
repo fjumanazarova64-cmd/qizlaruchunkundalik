@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secret Bloom ✦ The Modern Woman's Sanctuary | Shaxsiy Rivojlanish & Kundalik</title>
+  <meta name="description" content="Zamonaviy, intiluvchan va mustaqil qizlar uchun premium shaxsiy makon: PIN-himoyalangan kundalik, kapsula garderob, terini ilmiy parvarishlash, Pomodoro fokus studiyasi, moliyaviy maqsadlar va boy kutubxona.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="midnight">
+  <!-- Interactive Cosmic Sparkle Canvas -->
+  <canvas id="sparkleCanvas" class="sparkle-canvas"></canvas>
+  <div class="stars-container" id="starsContainer"></div>
+
+  <!-- Ambient Sound Quick Indicator Bar -->
+  <div class="quick-ambient-bar" id="quickAmbientBar">
+    <div class="ambient-indicator">
+      <span class="pulsing-note">♫</span>
+      <span id="quickMusicText">Fokus & Sokinlik Muhiti: Faol emas</span>
+    </div>
+    <div class="ambient-quick-controls">
+      <button class="mini-btn" id="quickMusicToggle" title="Musiqani yoqish/o'chirish">▶ Ijro</button>
+      <button class="mini-btn" onclick="showPage('music')" title="Musiqa studiyasiga o'tish">🎛 Studiya</button>
+    </div>
+  </div>
+
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menyu">☰</button>
+      <a class="logo" href="#" onclick="showPage('home'); return false;">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Secret Bloom</span>
+        <span class="crown-badge">EDITORIAL</span>
+      </a>
+    </div>
+
+    <div class="topbar-center">
+      <div class="greeting-pill" id="greetingPill">
+        <span class="greeting-icon">✨</span>
+        <span id="greetingText">Xush kelibsiz. Bugun o‘z orzularingiz tomon qadam tashlang.</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="clock-badge" id="liveClock">20:00</div>
+
+      <!-- Theme Switcher -->
+      <div class="theme-dropdown-wrapper">
+        <button class="icon-btn" id="themeDropdownBtn" title="Estetik Mavzular">
+          <span id="currentThemeIcon">🌙</span>
+        </button>
+        <div class="theme-menu hidden" id="themeMenu">
+          <div class="theme-menu-header">ESTETIK MAVZULAR</div>
+          <button class="theme-opt active" data-theme="midnight"><span>🌙</span> Velvet Midnight</button>
+          <button class="theme-opt" data-theme="sakura"><span>🌸</span> Soft Champagne Rose</button>
+          <button class="theme-opt" data-theme="matcha"><span>🍵</span> Serene Sage & Matcha</button>
+          <button class="theme-opt" data-theme="peach"><span>🍑</span> Tuscan Amber & Terracotta</button>
+          <button class="theme-opt" data-theme="cyber"><span>💎</span> Parisian Noir & Gold</button>
+        </div>
+      </div>
+
+      <!-- SFX Toggle -->
+      <button class="icon-btn" id="sfxToggleBtn" title="Akustik effektlar (Yoqilgan)">
+        <span id="sfxIcon">🔊</span>
+      </button>
+
+      <!-- Lock Status -->
+      <button class="icon-btn lock-btn" id="quickLockBtn" title="Kundalik xavfsizlik holati">
+        <span id="quickLockIcon">🔒</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="profile-card">
+        <div class="avatar-wrapper">
+          <div class="avatar" id="userAvatar">⚜️</div>
+          <span class="online-indicator"></span>
+        </div>
+        <div class="profile-info">
+          <b id="userNameDisplay">Shaxsiy Sanctuary</b>
+          <small id="userStatusDisplay">Intellekt · Go‘zallik · Balans</small>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <p class="menu-label">ASOSIY STUDIYALAR</p>
+        <button class="nav active" data-page="home">
+          <span class="nav-icon">✧</span>
+          <span class="nav-label">Dashboard</span>
+        </button>
+        <button class="nav" data-page="diary">
+          <span class="nav-icon">🔐</span>
+          <span class="nav-label">Shaxsiy Kundalik</span>
+          <span class="badge" id="diaryBadge">PIN</span>
+        </button>
+        <button class="nav" data-page="games">
+          <span class="nav-icon">♟️</span>
+          <span class="nav-label">10 ta Estetik Mashg‘ulot</span>
+          <span class="badge highlight">10 ta</span>
+        </button>
+        <button class="nav" data-page="growth">
+          <span class="nav-icon">📈</span>
+          <span class="nav-label">Rivojlanish & Moliya</span>
+        </button>
+        <button class="nav" data-page="library">
+          <span class="nav-icon">📚</span>
+          <span class="nav-label">Kutubxona & Ilm</span>
+        </button>
+        <button class="nav" data-page="modest">
+          <span class="nav-icon">🌷</span>
+          <span class="nav-label">Uslub & Elegance</span>
+        </button>
+        <button class="nav" data-page="music">
+          <span class="nav-icon">🎧</span>
+          <span class="nav-label">Ambient Audio Studiya</span>
+        </button>
+        <button class="nav" data-page="lola">
+          <span class="nav-icon">💌</span>
+          <span class="nav-label">Lola — Virtual Mentor</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Habit Quick Progress -->
+      <div class="sidebar-widget">
+        <div class="widget-header">
+          <span>💧 Gidratatsiya & Balans:</span>
+          <b id="sideWaterCount">0 / 8</b>
+        </div>
+        <div class="water-progress-bar">
+          <div class="water-progress-fill" id="sideWaterFill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="quote-card">
+          <span class="quote-mark">“</span>
+          <p id="sidebarQuote">O‘z qadrini bilgan, bilimli va mustaqil ayol butun dunyoni go‘zallashtiradi.</p>
+        </div>
+        <div class="app-version-badge">SECRET BLOOM ✦ MAURE EDITION 2026</div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main" id="mainContent">
+
+      <!-- ==================================================== -->
+      <!-- PAGE 1: DASHBOARD (HOME) -->
+      <!-- ==================================================== -->
+      <section class="page active" id="home">
+        <!-- Hero Banner: Editorial Chic -->
+        <div class="hero-banner">
+          <div class="hero-left">
+            <span class="eyebrow-chip">✦ THE MODERN WOMAN’S SANCTUARY ✦</span>
+            <h1>Aqlli, go‘zal va<br><span>o‘z hayoting me’mori.</span></h1>
+            <p class="hero-desc">
+              Karyera, ta'lim, shaxsiy fikrlar, uslub va ruhiy xotirjamlik uchun yaratilgan shaxsiy makoningiz. Bu yerda horg‘inlikdan forig‘ bo‘ling, o‘zingizni kashf eting va yangi marralar sari yuksalib boring.
+            </p>
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="showPage('diary')">
+                <span>✍️ Kundalikni Ochish</span>
+                <span class="btn-arrow">→</span>
+              </button>
+              <button class="btn-secondary" onclick="showPage('games')">
+                <span>♟️ Estetik Mashg‘ulotlar</span>
+              </button>
+            </div>
+          </div>
+          <div class="hero-right">
+            <div class="cosmic-portal">
+              <div class="portal-ring ring-1"></div>
+              <div class="portal-ring ring-2"></div>
+              <div class="portal-center">
+                <span class="portal-moon">⚜️</span>
+                <span class="floating-gem gem-1">💎</span>
+                <span class="floating-gem gem-2">🕯️</span>
+                <span class="floating-gem gem-3">📖</span>
+                <span class="floating-gem gem-4">☕</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Grid: Curated Sections -->
+        <div class="section-title-wrap">
+          <div>
+            <span class="eyebrow">ASOSIY YO‘NALISHLAR</span>
+            <h2>Bugungi diqqat markazingiz</h2>
+          </div>
+          <span class="date-badge" id="currentFullDate">Bugun</span>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card bento-diary" onclick="showPage('diary')">
+            <div class="bento-glow"></div>
+            <div class="bento-top">
+              <span class="bento-icon">🖋️</span>
+              <span class="card-badge">PIN Himoyali</span>
+            </div>
+            <h3>Shaxsiy Kundalik</h3>
+            <p>Tafakkur, chuqur his-tuyg‘ular, audio xotiralar va shaxsiy sirlar uchun daxlsiz maskan.</p>
+            <div class="card-footer-link">Yozishni boshlash <span>↗</span></div>
+          </div>
+
+          <div class="bento-card bento-games" onclick="showPage('games')">
+            <div class="bento-glow"></div>
+            <div class="bento-top">
+              <span class="bento-icon">👗</span>
+              <span class="card-badge gold">10 ta Mashg‘ulot</span>
+            </div>
+            <h3>Kapsula Uslub & Mashg‘ulotlar</h3>
+            <p>Lookbook stilistligi, Pomodoro fokus kafesi, skincare laboratoriyasi va intellektual viktorina.</p>
+            <div class="card-footer-link">Kirish <span>↗</span></div>
+          </div>
+
+          <div class="bento-card bento-habits" onclick="showPage('growth')">
+            <div class="bento-glow"></div>
+            <div class="bento-top">
+              <span class="bento-icon">📈</span>
+              <span class="card-badge green">O‘sish & Moliya</span>
+            </div>
+            <h3>Odatlar & Jamg‘arma</h3>
+            <p>The "That Girl" odatlari, oylik moliyaviy jamg‘arma trekeri va orzular doskasi (Vision board).</p>
+            <div class="card-footer-link">Ko‘rish <span>↗</span></div>
+          </div>
+
+          <div class="bento-card bento-music" onclick="showPage('music')">
+            <div class="bento-glow"></div>
+            <div class="bento-top">
+              <span class="bento-icon">🌧️</span>
+              <span class="card-badge purple">Studiya</span>
+            </div>
+            <h3>Ambient & Fokus Mikseri</h3>
+            <p>Dars va mutolaa uchun yomg‘ir, qahvaxona, kamin va sokin lo-fi ohanglarini mikslash.</p>
+            <div class="card-footer-link">Tinglash <span>↗</span></div>
+          </div>
+        </div>
+
+        <!-- Dashboard Middle Triple Grid -->
+        <div class="dashboard-triple-grid">
+          <!-- Daily Affirmation & Mindfulness -->
+          <div class="glass-panel affirmation-box">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">TAFAKKUR VA ILHOM</span>
+                <h3>Kun Hikmati & Tasdiq ✨</h3>
+              </div>
+              <button class="icon-btn-sm" id="speakAffirmationBtn" title="Ovoz bilan eshitish">🔊</button>
+            </div>
+            <div class="mirror-frame">
+              <p class="affirmation-text" id="dailyAffirmationText">
+                “O‘z mehnating, aqling va ichki nafosating bilan dunyoni yaxshi tomonga o‘zgartirishga qodirsan.”
+              </p>
+            </div>
+            <div class="panel-actions">
+              <button class="btn-text" id="refreshAffirmationBtn">Boshqa fikr 🔄</button>
+              <button class="btn-text" id="copyAffirmationBtn">Nusxa olish 📋</button>
+            </div>
+          </div>
+
+          <!-- Hydration & Wellness -->
+          <div class="glass-panel water-box">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">WELLNESS & BALANS</span>
+                <h3>Suv va Salomatlik Balansi 💧</h3>
+              </div>
+              <span class="water-badge" id="waterStatusPercent">0%</span>
+            </div>
+            <p class="water-hint">Kunlik 2 litr toza suv balansi terining yoshligi va energiya manbayidir:</p>
+            <div class="water-glasses-grid" id="waterGlassesGrid">
+              <button class="glass-btn" data-glass="0" title="1-stakan">🥛</button>
+              <button class="glass-btn" data-glass="1" title="2-stakan">🥛</button>
+              <button class="glass-btn" data-glass="2" title="3-stakan">🥛</button>
+              <button class="glass-btn" data-glass="3" title="4-stakan">🥛</button>
+              <button class="glass-btn" data-glass="4" title="5-stakan">🥛</button>
+              <button class="glass-btn" data-glass="5" title="6-stakan">🥛</button>
+              <button class="glass-btn" data-glass="6" title="7-stakan">🥛</button>
+              <button class="glass-btn" data-glass="7" title="8-stakan">🥛</button>
+            </div>
+            <div class="water-footer">
+              <span id="waterCountText">Bugun: 0 / 8 stakan</span>
+              <button class="btn-text-sm" id="resetWaterBtn">Tozalash</button>
+            </div>
+          </div>
+
+          <!-- Statistics & Milestones -->
+          <div class="glass-panel stats-box">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">SHAXSIY METRIKALAR</span>
+                <h3>Mening Ko‘rsatkichlarim 🌟</h3>
+              </div>
+              <span class="level-pill" id="userLevelBadge">Lider Shaxsiyat ✦</span>
+            </div>
+            <div class="stat-items-grid">
+              <div class="stat-card">
+                <span class="stat-icon">📖</span>
+                <b class="stat-num" id="statDiaryCount">0</b>
+                <small>Kundalik esdaliklar</small>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">🔥</span>
+                <b class="stat-num" id="statStreak">1 kun</b>
+                <small>Davomiylik (Streak)</small>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">☕</span>
+                <b class="stat-num" id="statGamesPlayed">0</b>
+                <small>Bajarilgan seanslar</small>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">📚</span>
+                <b class="stat-num" id="statBooksCount">6</b>
+                <small>Mutolaa maqolalari</small>
+              </div>
+            </div>
+            <div class="pet-mini-status" onclick="openGame('pomodoro');">
+              <span id="homePetAvatar">☕</span>
+              <div>
+                <b id="homePetName">Pomodoro Fokus Kafesi</b>
+                <small>Fokusli mutolaa seansini boshlash →</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Games Carousel -->
+        <div class="section-title-wrap">
+          <div>
+            <span class="eyebrow">ESTETIK & INTELLEKTUAL MASHG‘ULOTLAR</span>
+            <h2>Dam olish va diqqatni jamlash ♟️</h2>
+          </div>
+          <button class="btn-secondary" onclick="showPage('games')">Barchasini ko‘rish (10 ta) →</button>
+        </div>
+
+        <div class="games-preview-row">
+          <div class="game-preview-card" onclick="openGame('dressup')">
+            <div class="game-preview-img" style="background: linear-gradient(135deg, #4a284e 0%, #291834 100%);">👗</div>
+            <h4>Kapsula Garderob</h4>
+            <p>Old money & elegant uslub</p>
+          </div>
+          <div class="game-preview-card" onclick="openGame('makeup')">
+            <div class="game-preview-img" style="background: linear-gradient(135deg, #704264 0%, #49243e 100%);">🧴</div>
+            <h4>Skincare & Glow Lab</h4>
+            <p>Ilmiy terini parvarishlash</p>
+          </div>
+          <div class="game-preview-card" onclick="openGame('room')">
+            <div class="game-preview-img" style="background: linear-gradient(135deg, #2b3a4a 0%, #162431 100%);">🕯️</div>
+            <h4>Aesthetic Space</h4>
+            <p>Shinam ish stoli dizayni</p>
+          </div>
+          <div class="game-preview-card" onclick="openGame('pomodoro')">
+            <div class="game-preview-img" style="background: linear-gradient(135deg, #442217 0%, #291510 100%);">☕</div>
+            <h4>Focus Cafe</h4>
+            <p>Mahsuldor Pomodoro taymeri</p>
+          </div>
+          <div class="game-preview-card" onclick="openGame('sweet2048')">
+            <div class="game-preview-img" style="background: linear-gradient(135deg, #4e3620 0%, #291c10 100%);">🥐</div>
+            <h4>Café 2048</h4>
+            <p>Parij qandolatchiligi</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================== -->
+      <!-- PAGE 2: SHAXSIY KUNDALIK (SECRET DIARY & JOURNAL) -->
+      <!-- ==================================================== -->
+      <section class="page" id="diary">
+        <!-- Locked View -->
+        <div class="diary-lock-screen hidden" id="diaryLockScreen">
+          <div class="pin-card glass-panel">
+            <div class="lock-shield-icon">🔐</div>
+            <h2>Maxfiy Kundalik Daxlsizligi</h2>
+            <p>Sahifalaringiz shaxsiy xavfsizlik uchun qulflangan. 4 xonali PIN-kodni tering:</p>
+            
+            <div class="pin-dots-display" id="pinDots">
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+            </div>
+
+            <div class="pin-keypad">
+              <button class="key-btn" data-key="1">1</button>
+              <button class="key-btn" data-key="2">2</button>
+              <button class="key-btn" data-key="3">3</button>
+              <button class="key-btn" data-key="4">4</button>
+              <button class="key-btn" data-key="5">5</button>
+              <button class="key-btn" data-key="6">6</button>
+              <button class="key-btn" data-key="7">7</button>
+              <button class="key-btn" data-key="8">8</button>
+              <button class="key-btn" data-key="9">9</button>
+              <button class="key-btn special" id="pinClearBtn">✕ Tozalash</button>
+              <button class="key-btn" data-key="0">0</button>
+              <button class="key-btn special" id="pinForgotBtn">💡 Yordam</button>
+            </div>
+            <p class="pin-hint-text">Standart PIN-kod: <b>1234</b>. Klaviaturadagi raqamlardan ham foydalanishingiz mumkin.</p>
+          </div>
+        </div>
+
+        <!-- Unlocked View -->
+        <div class="diary-content" id="diaryUnlockedContent">
+          <div class="page-header-row">
+            <div>
+              <span class="eyebrow">DAXLSIZ VA SHAXSIY TAFAKKUR MAZILI</span>
+              <h1>Shaxsiy <span>Kundalik & Jurnal</span> 🖋️</h1>
+              <p>Fikrlaringizni tartibga soling, maqsadlarni qayd eting va xotiralaringizni qadrlang.</p>
+            </div>
+            <div class="diary-header-actions">
+              <button class="btn-secondary" id="setNewPinBtn">🔑 PIN Kodni o‘zgartirish</button>
+              <button class="btn-secondary" id="exportDiaryBtn">📥 Zaxira nusxa (JSON)</button>
+              <button class="btn-secondary" id="lockDiaryNowBtn">🔒 Qulflash</button>
+            </div>
+          </div>
+
+          <!-- Diary Editor -->
+          <div class="glass-panel diary-editor-box">
+            <div class="editor-header-inputs">
+              <input type="text" id="entryTitle" class="input-title" placeholder="Mavzu (masalan: Yangi loyiha ustidagi o‘ylarim, Bugungi dars xulosasi...)" maxlength="100">
+              <div class="editor-date-tag" id="entryCurrentTimeDisplay">Bugun</div>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="diary-toolbar">
+              <div class="toolbar-group">
+                <label>Kayfiyat & Holat:</label>
+                <select id="entryMood" class="select-pill">
+                  <option value="✨">✨ Ilhomlangan & Diqqatli</option>
+                  <option value="🌸">🌸 Xotirjam & Shukronali</option>
+                  <option value="☕">☕ Chuqur tafakkur</option>
+                  <option value="💼">💼 Karyera & Maqsad</option>
+                  <option value="💖">💖 Romantik & Muloyim</option>
+                  <option value="🌧️">🌧️ Melankolik & Horg‘in</option>
+                  <option value="⚡">⚡ Kuchli & G‘olib</option>
+                  <option value="🌿">🌿 Yangilanish</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label>Kategoriya:</label>
+                <select id="entryCategory" class="select-pill">
+                  <option value="Shaxsiy Fikrlar">🖋️ Shaxsiy Fikrlar</option>
+                  <option value="Karyera & Ta'lim">💼 Karyera & Ta'lim</option>
+                  <option value="Orzular & Maqsadlar">🎯 Orzular & Maqsadlar</option>
+                  <option value="Ruhiy Xotirjamlik">🌿 Ruhiy Xotirjamlik</option>
+                  <option value="Munosabatlar">💌 Munosabatlar</option>
+                  <option value="Kitob & Mutolaa">📚 Kitob & Mutolaa</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label>Qog‘oz foni:</label>
+                <select id="paperThemeSelect" class="select-pill">
+                  <option value="paper-classic">Klassik Midnight</option>
+                  <option value="paper-parchment">Vintage pergament</option>
+                  <option value="paper-sakura">Soft Champagne</option>
+                  <option value="paper-clean">Minimalist oq</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label>Shrift uslubi:</label>
+                <select id="entryFontSelect" class="select-pill">
+                  <option value="font-serif">Editorial Serif</option>
+                  <option value="font-sans">Modern Clean Sans</option>
+                  <option value="font-handwriting">Nozik qo‘lyozma</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Aesthetic Stamps -->
+            <div class="sticker-bar">
+              <span class="sticker-label">Estetik belgilar:</span>
+              <div class="sticker-icons" id="stickerPalette">
+                <button type="button" class="sticker-btn" data-sticker="✦">✦</button>
+                <button type="button" class="sticker-btn" data-sticker="⚜️">⚜️</button>
+                <button type="button" class="sticker-btn" data-sticker="☕">☕</button>
+                <button type="button" class="sticker-btn" data-sticker="🕯️">🕯️</button>
+                <button type="button" class="sticker-btn" data-sticker="🌿">🌿</button>
+                <button type="button" class="sticker-btn" data-sticker="📖">📖</button>
+                <button type="button" class="sticker-btn" data-sticker="💎">💎</button>
+                <button type="button" class="sticker-btn" data-sticker="✨">✨</button>
+                <button type="button" class="sticker-btn" data-sticker="🌙">🌙</button>
+                <button type="button" class="sticker-btn" data-sticker="🤍">🤍</button>
+              </div>
+            </div>
+
+            <!-- Text Writing Area -->
+            <div class="diary-paper-container" id="diaryPaperContainer">
+              <textarea id="entryText" class="diary-textarea font-serif" placeholder="Bugungi kun menga qanday muhim saboq berdi? Qalbimda nimalar kechmoqda?.." rows="10"></textarea>
+            </div>
+
+            <!-- Attachments: Voice Memo & Photo -->
+            <div class="editor-attachments-row">
+              <div class="voice-memo-widget">
+                <button type="button" class="btn-secondary" id="recordVoiceBtn">
+                  <span id="voiceRecIcon">🎙️</span>
+                  <span id="voiceRecText">Ovozli esdalik yozish</span>
+                </button>
+                <audio id="voicePreviewAudio" controls class="hidden"></audio>
+                <span id="voiceStatus" class="attachment-status"></span>
+              </div>
+
+              <div class="photo-attach-widget">
+                <label class="btn-secondary upload-photo-label">
+                  <span>📷 Rasm / Moodboard biriktirish</span>
+                  <input type="file" id="entryPhotoInput" accept="image/*" hidden>
+                </label>
+                <div id="photoPreviewContainer" class="photo-preview-wrap hidden">
+                  <img id="photoPreviewImg" src="" alt="Biriktirilgan rasm">
+                  <button type="button" class="remove-photo-btn" id="removePhotoBtn">✕</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Editor Footer -->
+            <div class="editor-footer">
+              <div class="editor-stats">
+                <span id="charCountDisplay">0 ta belgi</span>
+                <span class="encryption-tag">🔒 End-to-end Local Storage Himoyasi</span>
+              </div>
+              <div class="editor-submit-group">
+                <button class="btn-secondary" id="clearEditorBtn">Tozalash</button>
+                <button class="btn-primary" id="saveEntryBtn">
+                  <span>✦ Kundalikka Saqlash</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entries Search & Grid -->
+          <div class="section-title-wrap entries-header">
+            <div>
+              <span class="eyebrow">XOTIRALAR TO‘PLAMI</span>
+              <h2>Avvalgi yozuvlar xronikasi 📜</h2>
+            </div>
+            <div class="filter-controls">
+              <input type="text" id="searchEntriesInput" class="search-input" placeholder="🔎 Yozuvlar bo‘yicha qidirish...">
+              <select id="filterMoodSelect" class="select-pill">
+                <option value="all">Barcha holatlar</option>
+                <option value="✨">✨ Ilhomlangan</option>
+                <option value="🌸">🌸 Xotirjam</option>
+                <option value="☕">☕ Tafakkur</option>
+                <option value="💼">💼 Karyera</option>
+                <option value="🌧️">🌧️ Melankolik</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="entries-timeline-grid" id="entriesListGrid"></div>
+        </div>
+      </section>
+
+      <!-- ==================================================== -->
+      <!-- PAGE 3: 10 TA ESTETIK & INTELLEKTUAL MASHG‘ULOT -->
+      <!-- ==================================================== -->
+      <section class="page" id="games">
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow">ESTETIKA, FOKUS VA INTELLEKT</span>
+            <h1>10 ta <span>Estetik Mashg‘ulot & Studiyalar</span> ♟️</h1>
+            <p>Kapsula garderob yaratishdan tortib, Pomodoro fokus kafesi va skincare laboratoriyasigacha.</p>
+          </div>
+
+          <!-- Tabs -->
+          <div class="games-tab-pills" id="gameNavPills">
+            <button class="game-pill active" data-game="dressup">👗 Kapsula Uslub</button>
+            <button class="game-pill" data-game="makeup">🧴 Skincare Lab</button>
+            <button class="game-pill" data-game="room">🕯️ Shinam Makon</button>
+            <button class="game-pill" data-game="pomodoro">☕ Focus Cafe</button>
+            <button class="game-pill" data-game="sweet2048">🥐 Café 2048</button>
+            <button class="game-pill" data-game="catchstars">✨ Diqqat & Yulduz</button>
+            <button class="game-pill" data-game="memory">💎 San'at & Kristallar</button>
+            <button class="game-pill" data-game="popit">🫧 Zen Antistress</button>
+            <button class="game-pill" data-game="magicorb">🔮 Metaforik Kartalar</button>
+            <button class="game-pill" data-game="quiz">🧠 Zukko Ayollar IQ</button>
+          </div>
+        </div>
+
+        <div class="game-stage-wrapper">
+
+          <!-- 1. CAPSULE WARDROBE & LOOKBOOK -->
+          <div class="game-view active" id="game-dressup">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>👗 Kapsula Garderob & Lookbook Studiyasi</h3>
+                  <p>Old money, minimalizm, ishbilarmon va nafis modest uslublarni uyg‘unlashtiring.</p>
+                </div>
+                <div class="game-actions">
+                  <button class="btn-secondary-sm" id="randomizeOutfitBtn">🎲 Kapsula Kombinatsiya</button>
+                  <button class="btn-primary-sm" id="saveOutfitSnapBtn">📸 Lookbookga Saqlash</button>
+                </div>
+              </div>
+
+              <div class="dressup-studio-layout">
+                <div class="doll-stage" id="dollStage">
+                  <div class="doll-scenery scenery-bedroom" id="dollScenery">
+                    <div class="doll-base" id="dollBase">
+                      <div class="doll-head">
+                        <div class="doll-face" id="dollFace">
+                          <span class="doll-eyes">✦</span>
+                          <span class="doll-smile">―</span>
+                          <span class="doll-blush">✿</span>
+                        </div>
+                        <div class="doll-hair" id="dollHair"></div>
+                        <div class="doll-accessory" id="dollAccessory"></div>
+                      </div>
+                      <div class="doll-body">
+                        <div class="doll-outfit" id="dollOutfit"></div>
+                        <div class="doll-bottom" id="dollBottom"></div>
+                        <div class="doll-shoes" id="dollShoes"></div>
+                        <div class="doll-bag" id="dollBag"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="stage-scenery-selector">
+                    <span>Atmosfera:</span>
+                    <button class="scene-opt active" data-scene="bedroom">Studio</button>
+                    <button class="scene-opt" data-scene="paris">Parij</button>
+                    <button class="scene-opt" data-scene="sakura">Botanika</button>
+                    <button class="scene-opt" data-scene="palace">Gallery</button>
+                  </div>
+                </div>
+
+                <div class="wardrobe-panel">
+                  <div class="wardrobe-tabs" id="wardrobeTabs">
+                    <button class="w-tab active" data-cat="hair">💇 Soch / Hijob</button>
+                    <button class="w-tab" data-cat="outfits">🧥 Pidjak & Libos</button>
+                    <button class="w-tab" data-cat="bottoms">👖 Shim & Yubka</button>
+                    <button class="w-tab" data-cat="shoes">👠 Poyabzal</button>
+                    <button class="w-tab" data-cat="accessories">👜 Aksessuar</button>
+                  </div>
+
+                  <div class="wardrobe-items-grid" id="wardrobeItemsGrid"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. SKINCARE ROUTINE & GLOW LAB -->
+          <div class="game-view" id="game-makeup">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>🧴 Skincare & Ilmiy Parvarish Laboratoriyasi</h3>
+                  <p>Terining tabiiy nurlanishi (glow), to‘g‘ri parvarish tartibi va nozik rang palitrasi.</p>
+                </div>
+                <button class="btn-secondary-sm" id="resetMakeupBtn">🔄 Qayta tiklash</button>
+              </div>
+
+              <div class="makeup-studio-layout">
+                <div class="makeup-canvas-wrapper">
+                  <div class="makeup-model-face" id="makeupFace">
+                    <div class="makeup-eyes">
+                      <div class="eye left-eye">
+                        <div class="eyeshadow" id="eyeshadowLeft"></div>
+                        <div class="pupil"></div>
+                        <div class="eyelash"></div>
+                      </div>
+                      <div class="eye right-eye">
+                        <div class="eyeshadow" id="eyeshadowRight"></div>
+                        <div class="pupil"></div>
+                        <div class="eyelash"></div>
+                      </div>
+                    </div>
+                    <div class="makeup-cheeks">
+                      <div class="cheek left-cheek" id="blushLeft"></div>
+                      <div class="cheek right-cheek" id="blushRight"></div>
+                    </div>
+                    <div class="makeup-lips" id="makeupLips"></div>
+                    <div class="makeup-face-gems" id="faceGemsContainer"></div>
+                  </div>
+                </div>
+
+                <div class="makeup-controls-panel">
+                  <div class="control-box">
+                    <label>💋 Nude & Velvet Pomada Palitrasi:</label>
+                    <div class="color-swatches" id="lipstickSwatches">
+                      <button class="swatch active" style="background: #a3485e;" data-color="#a3485e" title="French Rosewood"></button>
+                      <button class="swatch" style="background: #8b3a4c;" data-color="#8b3a4c" title="Velvet Wine"></button>
+                      <button class="swatch" style="background: #be6a75;" data-color="#be6a75" title="Soft Mauve"></button>
+                      <button class="swatch" style="background: #b56550;" data-color="#b56550" title="Warm Terracotta"></button>
+                      <button class="swatch" style="background: #c48b71;" data-color="#c48b71" title="Chic Nude"></button>
+                      <button class="swatch" style="background: #6b2d5c;" data-color="#6b2d5c" title="Deep Plum"></button>
+                    </div>
+                  </div>
+
+                  <div class="control-box">
+                    <label>👁️ Ko‘z Soyalari (Soft Glam & Matte):</label>
+                    <div class="color-swatches" id="eyeshadowSwatches">
+                      <button class="swatch active" style="background: rgba(181, 131, 141, 0.5);" data-color="rgba(181, 131, 141, 0.6)"></button>
+                      <button class="swatch" style="background: rgba(109, 104, 117, 0.5);" data-color="rgba(109, 104, 117, 0.6)"></button>
+                      <button class="swatch" style="background: rgba(229, 152, 155, 0.5);" data-color="rgba(229, 152, 155, 0.6)"></button>
+                      <button class="swatch" style="background: rgba(212, 163, 115, 0.5);" data-color="rgba(212, 163, 115, 0.6)"></button>
+                      <button class="swatch" style="background: rgba(43, 45, 66, 0.4);" data-color="rgba(43, 45, 66, 0.4)"></button>
+                    </div>
+                  </div>
+
+                  <div class="control-box">
+                    <label>🌸 Natural Yonoq Nuri (Cheek Glow):</label>
+                    <div class="color-swatches" id="blushSwatches">
+                      <button class="swatch active" style="background: rgba(229, 152, 155, 0.5);" data-color="rgba(229, 152, 155, 0.5)"></button>
+                      <button class="swatch" style="background: rgba(255, 180, 162, 0.5);" data-color="rgba(255, 180, 162, 0.5)"></button>
+                      <button class="swatch" style="background: rgba(212, 163, 115, 0.4);" data-color="rgba(212, 163, 115, 0.4)"></button>
+                      <button class="swatch" style="background: transparent; border: 1px dashed #aaa;" data-color="transparent" title="Olib tashlash"></button>
+                    </div>
+                  </div>
+
+                  <div class="control-box">
+                    <label>✨ Go‘zallik Aktsentlari:</label>
+                    <div class="face-gem-buttons" id="faceGemButtons">
+                      <button class="btn-gem-opt" data-gem="sparkle">✦ Highlighting Nur</button>
+                      <button class="btn-gem-opt" data-gem="freckles">☕ Tabiiy Sepkillar</button>
+                      <button class="btn-gem-opt" data-gem="hearts">🤍 Nozik Aktsent</button>
+                      <button class="btn-gem-opt" data-gem="none">Tozalash</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. AESTHETIC SPACE & DESK DESIGNER -->
+          <div class="game-view" id="game-room">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>🕯️ Orzudagi Shinam Ish & Mutolaa Makoni</h3>
+                  <p>Aromatik shamlar, qahva, noutbuk, yashil o‘simliklar va minimalist estetik interyer.</p>
+                </div>
+                <div class="game-actions">
+                  <button class="btn-secondary-sm" id="resetRoomBtn">Tozalash</button>
+                </div>
+              </div>
+
+              <div class="room-designer-layout">
+                <div class="room-canvas" id="roomCanvas">
+                  <div class="room-wall" id="roomWall">
+                    <div class="neon-sign" id="roomNeon">MINDFUL & FOCUSED ✨</div>
+                    <div class="wall-poster" id="roomPoster">☕</div>
+                    <div class="fairy-lights">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+                  </div>
+                  <div class="room-floor" id="roomFloor">
+                    <div class="placed-item item-bed" id="roomBed">🛋️ Shinam kreslo va adyol</div>
+                    <div class="placed-item item-desk" id="roomDesk">💻 MacBook & Daftarlar</div>
+                    <div class="placed-item item-rug" id="roomRug">☕ Yangi qahva va shirinlik</div>
+                    <div class="placed-item item-plant" id="roomPlant">🪴 Monstera o‘simligi</div>
+                    <div class="placed-item item-pet" id="roomPet">🕯️ Scented Aromatic Sham</div>
+                  </div>
+                </div>
+
+                <div class="room-customizer-panel">
+                  <h4>Interyer elementlari:</h4>
+                  <div class="room-options-group">
+                    <label>Devor palitrasi:</label>
+                    <div class="color-swatches" id="wallColorSwatches">
+                      <button class="swatch active" style="background: #1c1427;" data-wall="#1c1427"></button>
+                      <button class="swatch" style="background: #2b2622;" data-wall="#2b2622"></button>
+                      <button class="swatch" style="background: #1e2824;" data-wall="#1e2824"></button>
+                      <button class="swatch" style="background: #2c1d24;" data-wall="#2c1d24"></button>
+                    </div>
+                  </div>
+
+                  <div class="room-options-group">
+                    <label>Motivatsion devor yozuvi:</label>
+                    <select id="neonTextSelect" class="select-pill">
+                      <option value="MINDFUL & FOCUSED ✨">MINDFUL & FOCUSED ✨</option>
+                      <option value="C'EST LA VIE ✦">C'EST LA VIE ✦</option>
+                      <option value="MAKE IT HAPPEN 👑">MAKE IT HAPPEN 👑</option>
+                      <option value="STAY GRACEFUL 🤍">STAY GRACEFUL 🤍</option>
+                    </select>
+                  </div>
+
+                  <div class="room-items-toggles">
+                    <label><input type="checkbox" id="toggleBed" checked> Shinam kreslo</label>
+                    <label><input type="checkbox" id="toggleDesk" checked> Ish stoli & Noutbuk</label>
+                    <label><input type="checkbox" id="toggleRug" checked> Qahva va choy</label>
+                    <label><input type="checkbox" id="togglePlant" checked> Xona o‘simligi</label>
+                    <label><input type="checkbox" id="togglePet" checked> Aromatik sham</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. POMODORO FOCUS CAFE (ADULT STUDY COMPANION) -->
+          <div class="game-view" id="game-pomodoro">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>☕ Pomodoro Fokus Kafesi & Mahsuldorlik Studiyasi</h3>
+                  <p>25 daqiqalik chuqur fokus seansi. Diqqatni bir joyga to‘plang va maqsadingizga erishing.</p>
+                </div>
+                <div class="game-score-badge">
+                  <span>Bajarilgan seanslar: <b id="pomodoroSessionsCount">0</b></span>
+                </div>
+              </div>
+
+              <div class="pomodoro-studio-grid">
+                <div class="pomodoro-timer-card">
+                  <div class="pomodoro-dial">
+                    <h1 class="pomodoro-timer-digits" id="pomodoroTimeDisplay">25:00</h1>
+                    <span class="pomodoro-state-label" id="pomodoroStateLabel">Fokus vaqti ☕</span>
+                  </div>
+                  <div class="pomodoro-controls">
+                    <button class="btn-primary" id="pomodoroStartBtn">▶ Boshlash</button>
+                    <button class="btn-secondary" id="pomodoroResetBtn">🔄 Qayta o‘rnatish</button>
+                    <button class="btn-secondary" id="pomodoroBreakBtn">🍃 5 daqiqa tanaffus</button>
+                  </div>
+                </div>
+
+                <div class="pomodoro-tasks-card">
+                  <h4>Bugungi diqqat vazifalari:</h4>
+                  <div class="pomodoro-tasks-list" id="pomodoroTasksList">
+                    <div class="task-check-row"><input type="checkbox"> <span>1 bob kitob yoki maqola o‘qish</span></div>
+                    <div class="task-check-row"><input type="checkbox"> <span>Chet tili lug‘atini takrorlash</span></div>
+                    <div class="task-check-row"><input type="checkbox"> <span>Loyiha yoki shaxsiy reja tuzish</span></div>
+                  </div>
+                  <div class="add-task-bar">
+                    <input type="text" id="pomodoroNewTaskInput" placeholder="Yangi vazifa...">
+                    <button class="btn-primary-sm" id="pomodoroAddTaskBtn">＋</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. 2048 PARISIENNE BAKERY -->
+          <div class="game-view" id="game-sweet2048">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>🥐 Café 2048: Parij Qandolatchiligi</h3>
+                  <p>Espressodan boshlab Imperial Qandolatgacha birlashtirib boring.</p>
+                </div>
+                <div class="game-score-badge">
+                  <span>Ball: <b id="score2048">0</b></span>
+                  <span>Eng yaxshi: <b id="best2048">0</b></span>
+                  <button class="btn-primary-sm" id="restart2048Btn">Yangi O‘yin</button>
+                </div>
+              </div>
+
+              <div class="game-2048-center">
+                <div class="grid-2048" id="grid2048"></div>
+                <div class="controls-2048-mobile">
+                  <button class="btn-dir" id="btn2048Up">▲</button>
+                  <div class="dir-row">
+                    <button class="btn-dir" id="btn2048Left">◀</button>
+                    <button class="btn-dir" id="btn2048Down">▼</button>
+                    <button class="btn-dir" id="btn2048Right">▶</button>
+                  </div>
+                </div>
+                <p class="game-hint">Boshqaruv: Klaviaturadagi strelkalar (↑ ↓ ← →) yoki surish.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. CATCH THE FOCUS STARS -->
+          <div class="game-view" id="game-catchstars">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>✨ Diqqat & Fokus Yulduzlarini Tutish</h3>
+                  <p>Miya reflekslarini charxlash: Oltin yulduz va bilimlarni to‘plang, chalg‘ituvchi omillardan qoching.</p>
+                </div>
+                <div class="game-score-badge">
+                  <span>Fokus Balli: <b id="catchScore">0</b></span>
+                  <span>Imkoniyat: <b id="catchLives">❤️❤️❤️</b></span>
+                  <button class="btn-primary-sm" id="startCatchGameBtn">Boshlash</button>
+                </div>
+              </div>
+
+              <div class="catch-canvas-container">
+                <canvas id="catchCanvas" width="600" height="400"></canvas>
+                <div class="catch-instructions">Kursor yoki barmoqni chapga/o‘ngga surib harakatlaning</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. ART MASTERPIECES & CRYSTALS MEMORY -->
+          <div class="game-view" id="game-memory">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>💎 Jahon San'ati & Kristallar Xotira Mashqi</h3>
+                  <p>Dunyo durdonalari va qimmatbaho toshlar juftligini topib vizual xotirangizni kuchaytiring.</p>
+                </div>
+                <div class="game-score-badge">
+                  <span>Harakatlar: <b id="memoryMoves">0</b></span>
+                  <span>Vaqt: <b id="memoryTimer">0s</b></span>
+                  <button class="btn-primary-sm" id="startMemoryAdvBtn">Boshlash</button>
+                </div>
+              </div>
+
+              <div class="memory-board-grid" id="memoryAdvBoard"></div>
+              <p id="memoryAdvMessage" class="game-status-text">O‘yinni boshlash uchun tugmani bosing!</p>
+            </div>
+          </div>
+
+          <!-- 8. ZEN ANTISTRESS SOUNDPAD -->
+          <div class="game-view" id="game-popit">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>🫧 Zen Antistress & Sensorli Tinchlanish</h3>
+                  <p>Horg‘inlik va miya charchog‘ini yozuvchi mayin akustik bosilish effektlari.</p>
+                </div>
+                <button class="btn-primary-sm" id="flipPopItBtn">🔄 Yangitdan Faollashtirish</button>
+              </div>
+
+              <div class="popit-board-wrapper">
+                <div class="popit-mat" id="popitMat"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. METAPHORICAL TAROT & MINDFUL INSIGHT -->
+          <div class="game-view" id="game-magicorb">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>🔮 Metaforik Kartalar & Kunlik Falsafiy Ilhom</h3>
+                  <p>Ichki savolingizni o‘ylang va metaforik kristal shar yoki psixologik kartalardan maslahat oling.</p>
+                </div>
+              </div>
+
+              <div class="magic-orb-container">
+                <div class="crystal-orb" id="crystalOrb">
+                  <div class="orb-inner-mist"></div>
+                  <div class="orb-answer-text" id="orbAnswer">Niyatingizni tugib, bosing...</div>
+                </div>
+                <button class="btn-primary" id="shakeOrbBtn">🔮 Donishmand Fikr Olish</button>
+              </div>
+
+              <div class="tarot-row">
+                <h4>Bugungi 3 ta Psixologik Insight Kartasi:</h4>
+                <div class="tarot-cards-grid" id="tarotCardsGrid">
+                  <div class="tarot-card" data-tarot="love">
+                    <div class="tarot-card-inner">
+                      <div class="tarot-front">💖<br>Ichki Uyg‘unlik</div>
+                      <div class="tarot-back">✦</div>
+                    </div>
+                  </div>
+                  <div class="tarot-card" data-tarot="success">
+                    <div class="tarot-card-inner">
+                      <div class="tarot-front">⭐<br>Liderlik & Zafar</div>
+                      <div class="tarot-back">✦</div>
+                    </div>
+                  </div>
+                  <div class="tarot-card" data-tarot="peace">
+                    <div class="tarot-card-inner">
+                      <div class="tarot-front">🌿<br>Qat'iyat & Sabr</div>
+                      <div class="tarot-back">✦</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tarotResultBox" class="tarot-result-box hidden"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10. SMART WOMEN IQ & CAREER TRIVIA -->
+          <div class="game-view" id="game-quiz">
+            <div class="game-card-wide glass-panel">
+              <div class="game-header">
+                <div>
+                  <h3>🧠 Zukko Ayollar: Tarix, Fan, Diplomatiya & IQ</h3>
+                  <p>Dunyoni o‘zgartirgan ayollar, moliya, ilm-fan va diplomatik etiket bo‘yicha intellektual viktorina.</p>
+                </div>
+                <div class="quiz-step-badge" id="quizProgressBadge">Savol 1 / 5</div>
+              </div>
+
+              <div class="quiz-box" id="quizBox">
+                <h3 class="quiz-question" id="quizQuestion">Savol yuklanmoqda...</h3>
+                <div class="quiz-options-grid" id="quizOptions"></div>
+                <div class="quiz-feedback-box hidden" id="quizFeedback"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================================================== -->
+      <!-- PAGE 4: RIVOJLANISH & MOLIYA (GROWTH & FINANCE) -->
+      <!-- ==================================================== -->
+      <section class="page" id="growth">
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow">SHAXSIY O‘SISH VA MUSTAQILLIK</span>
+            <h1>Rivojlanish, <span>Odatlar & Moliya</span> 📈</h1>
+            <p>O‘z hayotini boshqargan qiz kelajak me'moridir. Kunlik odatlar va moliyaviy jamg‘arma nazorati.</p>
+          </div>
+        </div>
+
+        <div class="growth-grid-layout">
+          <!-- Habit Tracker -->
+          <div class="glass-panel habit-tracker-card">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">THE "THAT GIRL" RUTINASI</span>
+                <h3>Muvaffaqiyatli Kun Odatlari 🎯</h3>
+              </div>
+              <button class="btn-primary-sm" id="addNewHabitBtn">＋ Yangi odat</button>
+            </div>
+
+            <div class="habits-list" id="habitsList"></div>
+            
+            <div class="habits-summary-footer">
+              <span id="habitsProgressText">Bugungi bajarilish: 0 / 6</span>
+              <div class="streak-flame">🔥 7 kunlik uzluksiz intizom faol!</div>
+            </div>
+          </div>
+
+          <!-- Zen Breathing 4-7-8 -->
+          <div class="glass-panel zen-breath-card">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">EMOTSIONAL BALANS</span>
+                <h3>1 Daqiqalik Mindful Nafas Mashqi 🧘</h3>
+              </div>
+            </div>
+            <div class="zen-circle-container">
+              <div class="breath-outer-ring">
+                <div class="breath-circle" id="breathCircle">
+                  <span id="breathText">Nafas oling...</span>
+                </div>
+              </div>
+            </div>
+            <div class="zen-controls">
+              <button class="btn-primary-sm" id="startBreathBtn">Mashqni boshlash</button>
+              <p class="zen-hint">4s nafas olish · 4s ushlab turish · 4s mayin chiqarish. Xavotirni tezda pasaytiradi.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Financial Savings & Goals Tracker (Special for Young Women!) -->
+        <div class="glass-panel finance-box">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">MOLIYAVIY SAVODXONLIK</span>
+              <h3>Moliyaviy Jamg‘arma & Maqsadlar 💳</h3>
+            </div>
+            <button class="btn-primary-sm" id="addSavingsGoalBtn">＋ Jamg‘arma Maqsadi</button>
+          </div>
+          <p class="finance-subtitle">Mustaqillik sari: Shaxsiy rivojlanish, kurslar, sayohat va orzularingiz uchun jamg‘arma fondingiz.</p>
+          <div class="finance-cards-grid" id="financeCardsGrid"></div>
+        </div>
+
+        <!-- Vision Board -->
+        <div class="section-title-wrap">
+          <div>
+            <span class="eyebrow">KATTA MAQSADLAR</span>
+            <h2>Orzular Doskasi (Vision Board) 🖼️</h2>
+          </div>
+          <button class="btn-primary-sm" id="addDreamBtn">＋ Yangi Maqsad</button>
+        </div>
+
+        <div class="vision-board-grid" id="visionBoardGrid"></div>
+      </section>
+
+      <!-- ==================================================== -->
+      <!-- PAGE 5: KUTUBXONA (LIBRARY & EDITORIAL) -->
+      <!-- ==================================================== -->
+      <section class="page" id="library">
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow">ILM, KARYERA VA MA'RIFAT</span>
+            <h1>Bloom <span>Kutubxona & Editorial</span> 📚</h1>
+            <p>O‘qigan ayol — qudratli ayol. Saralangan intellektual maqolalar va shaxsiy PDF mutolaasi.</p>
+          </div>
+          <div class="library-header-actions">
+            <label class="btn-primary">
+              <span>＋ Shaxsiy PDF yuklash</span>
+              <input type="file" id="libraryPdfUpload" accept=".pdf,application/pdf" hidden>
+            </label>
+          </div>
+        </div>
+
+        <!-- Filter -->
+        <div class="library-filter-bar">
+          <input type="text" id="librarySearchInput" class="search-input" placeholder="Kitob yoki maqolani qidirish...">
+          <div class="filter-pills" id="libraryFilterPills">
+            <button class="filter-pill active" data-cat="all">Barchasi</button>
+            <button class="filter-pill" data-cat="karyera">Karyera & Moliya</button>
+            <button class="filter-pill" data-cat="psixologiya">Psixologiya & Chegaralar</button>
+            <button class="filter-pill" data-cat="uslub">Uslub & Etiket</button>
+            <button class="filter-pill" data-cat="tarix">Lider Ayollar</button>
+            <button class="filter-pill" data-cat="salomatlik">Dermatologiya</button>
+            <button class="filter-pill" data-cat="pdf">Shaxsiy PDFlar</button>
+          </div>
+        </div>
+
+        <div class="books-showcase-grid" id="booksGrid"></div>
+      </section>
+
+      <!-- ==================================================== -->
+      <!-- PAGE 6: USLUB & ELEGANCE (MODEST BLOOM) -->
+      <!-- ==================================================== -->
+      <section class="page" id="modest">
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow">NAFOSAT, USLUB VA MINNATDORLIK</span>
+            <h1>Elegance & <span>Modest Chic</span> 🌷</h1>
+            <p>Kiyinish madaniyati, ranglar falsafasi va qalb xotirjamligi sirlari.</p>
+          </div>
+        </div>
+
+        <div class="modest-showcase-banner glass-panel">
+          <div class="modest-banner-content">
+            <span class="eyebrow">HAQIQIY ELEGANCE — O‘ZIGA BO‘LGAN HURMATDADIR</span>
+            <h2>Nafislik shunchaki kiyim emas, balki tarbiya va odobdir.</h2>
+            <p>Kiyinishda ortiqcha dabdabadan qochib, sifatli matolar, vazmin ranglar va to‘g‘ri bichimlarni tanlash kishiga aslzodalik baxsh etadi.</p>
+          </div>
+          <div class="modest-art-symbol">⚜️ ✦ 🌷</div>
+        </div>
+
+        <div class="modest-grid-two">
+          <!-- Color Guide -->
+          <div class="glass-panel color-guide-box">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">COLOR THEORY</span>
+                <h3>Kapsula Ranglar Uyg‘unligi (Palette) 🎨</h3>
+              </div>
+            </div>
+            <p class="guide-desc">Har qanday uchrashuv, o‘qish yoki tadbir uchun mukammal aristokratik uyg‘unliklar:</p>
+            
+            <div class="palettes-list">
+              <div class="palette-item">
+                <b>1. Old Money Aesthetic (Krem, Shokolad & Oltin)</b>
+                <div class="palette-swatches">
+                  <span style="background: #fdf0d5"></span>
+                  <span style="background: #d4a373"></span>
+                  <span style="background: #6f4e37"></span>
+                  <span style="background: #2b1e16"></span>
+                </div>
+                <small>Ishonchli, qimmat va vazmin taassurot uyg‘otadi.</small>
+              </div>
+
+              <div class="palette-item">
+                <b>2. Parisian Minimalist (Grafit, Qora & Marvarid)</b>
+                <div class="palette-swatches">
+                  <span style="background: #111116"></span>
+                  <span style="background: #393e46"></span>
+                  <span style="background: #929a9e"></span>
+                  <span style="background: #f7f7f9"></span>
+                </div>
+                <small>Klassika, zamonaviy biznes va olijanob siluet.</small>
+              </div>
+
+              <div class="palette-item">
+                <b>3. Serene Earthy (Adaçayı / Sage, Bej & Zaytun)</b>
+                <div class="palette-swatches">
+                  <span style="background: #84a59d"></span>
+                  <span style="background: #f5cac3"></span>
+                  <span style="background: #f7ede2"></span>
+                  <span style="background: #3d405b"></span>
+                </div>
+                <small>Sokin, tabiiy va ko‘zni charchatmaydigan yengillik.</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gratitude -->
+          <div class="glass-panel gratitude-box">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">MINDFULNESS</span>
+                <h3>Kechki Shukronalik Qaydlari 🌸</h3>
+              </div>
+            </div>
+            <p>Bugungi kunda yuz bergan 3 ta muhim voqea yoki minnatdorlik sababini yozing:</p>
+            <textarea id="modestGratitudeText" class="diary-textarea" rows="5" placeholder="1. Bugungi kunda o‘rgangan yangi fikrim...&#10;2. O‘zim erishgan kichik g‘alaba...&#10;3. Qalbimga tinchlik bergan inson yoki lahza..."></textarea>
+            <div class="panel-actions-right">
+              <button class="btn-primary" id="saveModestGratitudeBtn">✦ Shukronalikni Saqlash</button>
+            </div>
+            <div class="gratitude-saved-list" id="gratitudeSavedList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================== -->
+      <!-- PAGE 7: MUSIQA & AMBIENT (AUDIO SANCTUARY) -->
+      <!-- ==================================================== -->
+      <section class="page" id="music">
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow">FOKUS, MUTOLAA VA XOTIRJAMLIK</span>
+            <h1>Bloom <span>Ambient Audio Studiya</span> 🎧</h1>
+            <p>O‘qish va chuqur ishlash paytida chalg‘imaslik uchun shaxsiy akustik muhitingizni mikslang.</p>
+          </div>
+        </div>
+
+        <div class="music-studio-layout">
+          <!-- Player -->
+          <div class="glass-panel player-card">
+            <div class="vinyl-display">
+              <div class="vinyl-record" id="vinylDisc">
+                <div class="vinyl-grooves"></div>
+                <div class="vinyl-label">✦ BLOOM ✦</div>
+              </div>
+              <div class="tonearm" id="toneArm"></div>
+            </div>
+
+            <canvas id="visualizerCanvas" class="visualizer-canvas" width="300" height="60"></canvas>
+
+            <div class="player-info">
+              <span class="eyebrow">DEEP FOCUS & STUDY LO-FI</span>
+              <h2 id="currentTrackTitle">Moonlight Melody (Sokin Oy)</h2>
+              <p id="playerStatusText">Ambient audio to‘xtatilgan</p>
+            </div>
+
+            <div class="player-controls-row">
+              <button class="ctrl-btn" id="prevTrackBtn" title="Oldingi">⏮</button>
+              <button class="ctrl-btn-play" id="mainPlayBtn" title="Ijro etish / To‘xtatish">▶</button>
+              <button class="ctrl-btn" id="nextTrackBtn" title="Keyingi">⏭</button>
+            </div>
+
+            <div class="volume-slider-row">
+              <span>Musiqa balandligi:</span>
+              <input type="range" id="musicMasterVolume" min="0" max="100" value="40" class="slider">
+            </div>
+
+            <div class="sleep-timer-row">
+              <span>🌙 Uyqu taymeri:</span>
+              <select id="sleepTimerSelect" class="select-pill">
+                <option value="0">O‘chirilgan</option>
+                <option value="15">15 daqiqa</option>
+                <option value="30">30 daqiqa</option>
+                <option value="60">1 soat</option>
+              </select>
+            </div>
+
+            <div class="upload-audio-box">
+              <label class="btn-secondary-sm">
+                <span>♫ Shaxsiy audio yuklash</span>
+                <input type="file" id="customAudioUpload" accept="audio/*" hidden>
+              </label>
+              <audio id="nativeAudioElement" controls class="hidden"></audio>
+            </div>
+          </div>
+
+          <!-- Mixer -->
+          <div class="glass-panel mixer-card">
+            <div class="panel-header">
+              <div>
+                <span class="eyebrow">MULTI-CHANNEL ACOUSTIC MIXER</span>
+                <h3>Tabiat & Muhit Tovushlari Mikseri 🌧️</h3>
+              </div>
+              <button class="btn-secondary-sm" id="muteAllAmbientBtn">Barchasini o‘chirish</button>
+            </div>
+            <p class="mixer-hint">Yomg‘ir, qahvaxona foni, dengiz to‘lqinlari va kamin olovini o‘zaro aralashtiring:</p>
+
+            <div class="ambient-tracks-grid">
+              <div class="ambient-channel">
+                <div class="channel-info">
+                  <span class="ch-icon">🌧️</span>
+                  <b>Derazadagi Yomg‘ir</b>
+                </div>
+                <input type="range" class="slider ambient-slider" data-sound="rain" min="0" max="100" value="0">
+              </div>
+
+              <div class="ambient-channel">
+                <div class="channel-info">
+                  <span class="ch-icon">☕</span>
+                  <b>Shinam Qahvaxona Foni</b>
+                </div>
+                <input type="range" class="slider ambient-slider" data-sound="cafe" min="0" max="100" value="0">
+              </div>
+
+              <div class="ambient-channel">
+                <div class="channel-info">
+                  <span class="ch-icon">🌊</span>
+                  <b>Tungi Dengiz To‘lqinlari</b>
+                </div>
+                <input type="range" class="slider ambient-slider" data-sound="waves" min="0" max="100" value="0">
+              </div>
+
+              <div class="ambient-channel">
+                <div class="channel-info">
+                  <span class="ch-icon">🪵</span>
+                  <b>Qishki Kamin Qasirlashi</b>
+                </div>
+                <input type="range" class="slider ambient-slider" data-sound="fire" min="0" max="100" value="0">
+              </div>
+
+              <div class="ambient-channel">
+                <div class="channel-info">
+                  <span class="ch-icon">🐦</span>
+                  <b>Tonggi Botanika Bog‘i</b>
+                </div>
+                <input type="range" class="slider ambient-slider" data-sound="birds" min="0" max="100" value="0">
+              </div>
+
+              <div class="ambient-channel">
+                <div class="channel-info">
+                  <span class="ch-icon">🌙</span>
+                  <b>Sokin Tun Ohanglari</b>
+                </div>
+                <input type="range" class="slider ambient-slider" data-sound="night" min="0" max="100" value="0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================== -->
+      <!-- PAGE 8: LOLA — VIRTUAL MENTOR (CONFIDANTE & ADVISOR) -->
+      <!-- ==================================================== -->
+      <section class="page" id="lola">
+        <div class="page-header-row">
+          <div>
+            <span class="eyebrow">INTELLIGENT CONFIDANTE & MENTOR</span>
+            <h1>Lola — <span>Virtual Mentor & Maslahatchi</span> 💌</h1>
+            <p>Karyera, ta'lim, emotsional intellekt, munosabatlar va shaxsiy rivojlanish bo‘yicha ishonchli do‘st.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel lola-chat-container">
+          <div class="lola-profile-header">
+            <div class="lola-avatar">👩🏻‍💼</div>
+            <div>
+              <b>Lola — Shaxsiy Mentor</b>
+              <small>Onlayn ✦ Empatiya va oqilona maslahatlar berishga tayyor</small>
+            </div>
+          </div>
+
+          <div class="chat-messages-box" id="lolaMessages">
+            <div class="msg msg-bot">
+              Assalomu alaykum! 🌷 Men sizning shaxsiy maslahatchingiz Lolaman. 
+              Karyera, oliy ta'lim, shaxsiy chegaralar, tortinchoqlikni yengish yoki shunchaki dildan suhbatlashish uchun istalgan mavzuni tanlashingiz mumkin. Bugun sizni nima o‘ylantirmoqda? ✨
+            </div>
+          </div>
+
+          <div class="chat-suggestions-chips" id="lolaChips">
+            <button class="chip-btn" data-prompt="O‘ziga ishonchsizlik (Imposter sindromi)ni qanday yengsam bo‘ladi?">💼 O‘ziga ishonch & Karyera</button>
+            <button class="chip-btn" data-prompt="Vaqtimni to‘g‘ri taqsimlash va chalg‘imaslik usullari">⏱ Vaqt menejmenti</button>
+            <button class="chip-btn" data-prompt="Psixologik chegaralar: Odamlarga 'yo‘q' deyishni o‘rganish">🛡️ Shaxsiy chegaralar</button>
+            <button class="chip-btn" data-prompt="Bugungi kundaligimga chuqur tafakkur uchun qanday savol bersam bo‘ladi?">🖋️ Kundalik uchun savollar</button>
+            <button class="chip-btn" data-prompt="Kapsula garderob va zamonaviy uslub yaratish sirlari">👗 Uslub va kiyinish</button>
+          </div>
+
+          <form class="chat-input-bar" id="lolaChatForm">
+            <input type="text" id="lolaChatInput" placeholder="Lolaga savolingiz yoki fikringizni yozing..." autocomplete="off">
+            <button type="submit" class="btn-primary">
+              <span>Yuborish ↗</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Universal Footer -->
+      <footer class="app-footer">
+        <div class="footer-quote">
+          Secret Bloom ✦ <span>“O‘z aqli va irodasi bilan o‘sayotgan ayol — butun jamiyat qudratidir.”</span>
+        </div>
+        <div class="footer-links">
+          <span>Maxfiylik va Xavfsizlik Kafolatlangan 🔒</span>
+          <span>•</span>
+          <span>100% Offline Ishlaydi ✦</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- MODALS -->
+  <!-- ==================================================== -->
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Reader Modal -->
+  <div id="bookReaderModal" class="modal hidden">
+    <div class="modal-content glass-panel book-reader-content">
+      <div class="modal-top">
+        <h3 id="readerModalTitle">Maqola Nomi</h3>
+        <button class="modal-close-btn" id="closeReaderModalBtn">✕</button>
+      </div>
+      <div class="reader-toolbar">
+        <div class="reader-font-controls">
+          <button id="readerFontDec">A-</button>
+          <span id="readerFontSizeDisplay">16px</span>
+          <button id="readerFontInc">A+</button>
+        </div>
+        <div class="reader-themes">
+          <button class="btn-theme-reader active" data-rtheme="light">Oq</button>
+          <button class="btn-theme-reader" data-rtheme="sepia">Sepia</button>
+          <button class="btn-theme-reader" data-rtheme="dark">Tungi</button>
+        </div>
+      </div>
+      <div class="reader-body" id="readerModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Set PIN Modal -->
+  <div id="pinSettingsModal" class="modal hidden">
+    <div class="modal-content glass-panel pin-settings-content">
+      <div class="modal-top">
+        <h3>🔑 Kundalik PIN Kodini O‘zgartirish</h3>
+        <button class="modal-close-btn" id="closePinModalBtn">✕</button>
+      </div>
+      <div class="pin-change-form">
+        <label>Eski PIN-kod:</label>
+        <input type="password" id="oldPinInput" maxlength="4" placeholder="Masalan: 1234">
+        
+        <label>Yangi 4 xonali PIN-kod:</label>
+        <input type="password" id="newPinInput" maxlength="4" placeholder="Masalan: 5678">
+
+        <label>Yangi PIN-kodni tasdiqlang:</label>
+        <input type="password" id="confirmPinInput" maxlength="4" placeholder="Qayta tering">
+
+        <div class="modal-bottom-actions">
+          <button class="btn-secondary" id="cancelPinChangeBtn">Bekor qilish</button>
+          <button class="btn-primary" id="savePinChangeBtn">Saqlash</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Diary Entry Modal -->
+  <div id="entryViewerModal" class="modal hidden">
+    <div class="modal-content glass-panel entry-viewer-content">
+      <div class="modal-top">
+        <div id="viewEntryMeta">🌸 2026-10-17</div>
+        <button class="modal-close-btn" id="closeEntryViewerBtn">✕</button>
+      </div>
+      <h2 id="viewEntryTitle">Esdalik Nomi</h2>
+      <div id="viewEntryBody" class="entry-full-text"></div>
+      <div id="viewEntryPhoto" class="entry-attached-photo hidden"></div>
+      <div id="viewEntryVoice" class="entry-attached-voice hidden"></div>
+    </div>
+  </div>
+
+  <!-- Core JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
